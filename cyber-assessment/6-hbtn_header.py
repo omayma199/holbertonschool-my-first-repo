@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 # This script takes a URL, sends a request and prints the X-Request-Id header
 import sys
 from urllib import request
