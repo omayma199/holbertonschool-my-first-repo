@@ -1,12 +1,6 @@
-#!/usr/bin/env bash
-
-# Backup the original hosts file
+#!/bin/bash
 cp /etc/hosts /etc/hosts.bak
-
-# Remove any existing entries for localhost or facebook.com to avoid duplicates
-sed -i '/localhost/d' /etc/hosts
-sed -i '/facebook.com/d' /etc/hosts
-
-# Add the new entries
-echo "127.0.0.2 localhost" >> /etc/hosts
-echo "8.8.8.8 facebook.com" >> /etc/hosts
+grep -v -e '^127\.0\.0\.2 localhost' -e '^8\.8\.8\.8 facebook\.com' /etc/hosts > /tmp/hosts.tmp
+echo "127.0.0.2 localhost" >> /tmp/hosts.tmp
+echo "8.8.8.8 facebook.com" >> /tmp/hosts.tmp
+sudo cp /tmp/hosts.tmp /etc/hosts
